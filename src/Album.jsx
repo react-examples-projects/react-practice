@@ -1,8 +1,17 @@
-import React, { useState, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 
 // impresionante memo memoriza el componente con las mismas props
-export default memo(function Album({ title, thumbnailUrl, id }) {
+export default memo(function Album({
+  title,
+  thumbnailUrl,
+  hocdata = "undefined ", // esto puede causar un error si no hay props
+}) {
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    // obtenemos la prop adicional proveida por el HOC
+    console.log(hocdata);
+  }, [hocdata]);
 
   const showError = () => {
     setError(true);

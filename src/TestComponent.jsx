@@ -7,7 +7,16 @@ import LoadingAlbum from "./Loading";
 import AlbumProvider from "./Provider/AlbumProvider";
 import ErrorAlbum from "./Errors Capture/ErrorAlbum";
 
+//HOC
+import AlbumHoc from "./Hocs/AlbumHoc";
+
 const AlbumLazy = lazy(() => import("./Album"));
+const AlbumWrappedLazy = AlbumHoc(AlbumLazy, () => {
+  console.log(
+    "%cSe activo el hoc",
+    "color: #0e918c; font-weight: bold; font-size: 15px;"
+  );
+});
 
 export default class TestComponent extends React.Component {
   static contextType = GlobalState;
@@ -70,7 +79,7 @@ export default class TestComponent extends React.Component {
                     <Suspense fallback={<LoadingAlbum />} key={id}>
                       {/*este compnente solo se renderiza una vez en toda la app*/}
                       <ErrorAlbum>
-                        <AlbumLazy
+                        <AlbumWrappedLazy
                           title={title}
                           thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
                           id={id}
