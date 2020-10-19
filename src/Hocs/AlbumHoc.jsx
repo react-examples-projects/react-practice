@@ -3,7 +3,10 @@ import React, { Component } from "react";
 const AlbumHoc = (WrappedComponent, fn) => {
   return class extends Component {
     componentDidMount() {
-      console.log("El Album " + this.props.id + " se monto");
+      console.log(
+        "%ccomponentDidMount " + this.props.id + " en el HOC",
+        "color:#150485;"
+      );
       fn(this); // invocamos al callback pasado cuando se invoca al hoc
     }
 

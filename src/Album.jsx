@@ -10,7 +10,7 @@ export default memo(function Album({
 
   useEffect(() => {
     // obtenemos la prop adicional proveida por el HOC
-    console.log(hocdata);
+    console.log("%c" + hocdata, "color:#206a5d;");
   }, [hocdata]);
 
   const showError = () => {

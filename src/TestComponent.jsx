@@ -11,10 +11,10 @@ import ErrorAlbum from "./Errors Capture/ErrorAlbum";
 import AlbumHoc from "./Hocs/AlbumHoc";
 
 const AlbumLazy = lazy(() => import("./Album"));
-const AlbumWrappedLazy = AlbumHoc(AlbumLazy, () => {
+const AlbumWrappedLazy = AlbumHoc(AlbumLazy, (_this) => {
   console.log(
-    "%cSe activo el hoc",
-    "color: #0e918c; font-weight: bold; font-size: 15px;"
+    "%c\n⏩ Se activo el hoc en album: " + _this.props.id + "\n",
+    "color: #14274e; font-weight: lighter; font-family: Courier New; font-size: 14px;"
   );
 });
 
