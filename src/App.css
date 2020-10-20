@@ -1,7 +1,7 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Cutive Mono", monospace;
+  font-family: 'Assistant', sans-serif;
   color: rgba(0, 0, 0, 0.712);
 }
 
@@ -20,17 +20,17 @@
 }
 
 .album {
-  flex: 0 1 calc(50% - 2.8rem);
-  padding: 1rem;
+  flex: 0 1 calc(54% - 2.8rem);
   border: 1px solid rgba(128, 128, 128, 0.253);
   margin-bottom: 2rem;
-  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
+  overflow: hidden;
 }
 .album p {
   flex-basis: 80%;
+  padding: 1rem;
 }
 
 .album:hover {
@@ -39,19 +39,23 @@
 
 .thumbail > img {
   width: 100%;
-  -webkit-filter: blur(1px);
-  filter: blur(1px);
+  -webkit-filter: blur(1px) grayscale(1);
+  filter: blur(1px) grayscale(1);
   transition: all 0.3s ease;
+  object-fit: cover;
 }
 
 .thumbail > img.loaded {
-  filter: blur(0);
+  filter: blur(0) grayscale(1); 
+}
+
+.album:hover .thumbail > img.loaded{
+  filter: blur(0) grayscale(0); 
 }
 
 .thumbail {
   display: flex;
-  flex-basis: calc(20% - 8px);
-  margin-right: 8px;
+  flex-basis: 50%;
 }
 
 .loading-album {
@@ -76,4 +80,15 @@
 .btn:hover {
   background: rgba(128, 128, 128, 0.65);
   color: #fff;
+}
+
+
+@media screen and (max-width: 750px) {
+  .test-component{
+    flex-direction: column;
+  }
+
+  .App{
+    width: 80%;
+  }
 }
