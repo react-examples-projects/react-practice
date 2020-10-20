@@ -1,6 +1,6 @@
 import React from "react";
 import { lazy, Suspense } from "react";
-
+ 
 //context
 import GlobalState from "./Context";
 import LoadingAlbum from "./Loading";
@@ -19,26 +19,42 @@ const AlbumWrappedLazy = AlbumHoc(AlbumLazy, (_this) => {
 });
 
 export default class TestComponent extends React.Component {
-  static contextType = GlobalState;
 
   state = {
     albumCount: 0,
+    scrollYPage: 0,
   };
 
   reference = React.createRef(null);
 
-  onClickAlbumCount = () => {
-    console.log(this.reference.current);
+  componentDidMount(){
+    window.addEventListener("scroll", this.onScroll);
+  }
 
+  componentWillUnmount(){
+    window.removeEventListener("scroll", this.onScroll);
+  }
+
+  onScroll = () => {
+    console.log(window.scrollY)
+    this.setState({
+        scrollYPage: window.scrollY
+    });
+  }
+
+   
+  onClickAlbumCount = () => {
     this.setState({
       albumCount: this.state.albumCount + 1,
     });
   };
 
   render() {
+
     if (this.state.albumCount === 5) {
       throw new Error("Corrompido xddd");
     }
+
     return (
       <AlbumProvider>
         <GlobalState.Consumer>
@@ -75,19 +91,24 @@ export default class TestComponent extends React.Component {
                 </strong>
 
                 <div className="test-component" onClick={this.onClickAlbum}>
-                  {context.albums.map(({ title, thumbnailUrl, id }) => (
+                  {context.albums.map(({ title, id }) => (
                     <Suspense fallback={<LoadingAlbum />} key={id}>
                       {/*este compnente solo se renderiza una vez en toda la app*/}
                       <ErrorAlbum>
                         <AlbumWrappedLazy
                           title={title}
                           thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
+                          thumbailUrlLazy={`https://picsum.photos/id/${id}/5/5`}
                           id={id}
                         />
                       </ErrorAlbum>
                     </Suspense>
                   ))}
                 </div>
+
+                <button className="btn" onClick={context.setAlbumListIndex}>
+                	Load More
+                </button>
               </>
             );
           }}
