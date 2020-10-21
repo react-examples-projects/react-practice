@@ -38,7 +38,7 @@ export default function (props) {
        return props.data.slice(0, currentIndex);
     });
 
-  }, [currentIndex])
+  }, [props.data, currentIndex])
  
   useEffect(() => {
     setAlbums(props.data.slice(0, ITEMS_PER_CLICK));
@@ -51,6 +51,7 @@ export default function (props) {
         currentUser,
         setCurrentUser,
         setAlbumListIndex,
+        currentIndex,
       }}
     >
       {props.children}

@@ -105,27 +105,35 @@ export default class TestComponent extends React.Component {
                 {
                   this.state.isLoading ?
                     <Loader /> :
-                    <div className="test-component" onClick={this.onClickAlbum}>
-                  {context.albums.map(({ title, id }) => (
-                    <Suspense fallback={<LoadingAlbum />} key={id}>
-                      {/*este compnente solo se renderiza una vez en toda la app*/}
-                      <ErrorAlbum>
-                        <AlbumWrappedLazy
-                          title={title}
-                          thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
-                          thumbailUrlLazy={`https://picsum.photos/id/${id}/5/5`}
-                          id={id}
-                        />
-                      </ErrorAlbum>
-                    </Suspense>
-                  ))}
-                </div>
+                    <>
+                      <div className="test-component" onClick={this.onClickAlbum}>
+                        {context.albums.map(({ title, id }) => (
+                          <Suspense fallback={<LoadingAlbum />} key={id}>
+                            {/*este compnente solo se renderiza una vez en toda la app*/}
+                            <ErrorAlbum>
+                              <AlbumWrappedLazy
+                                title={title}
+                                thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
+                                thumbailUrlLazy={`https://picsum.photos/id/${id}/5/5`}
+                                id={id}
+                              />
+                            </ErrorAlbum>
+                          </Suspense>
+                        ))}
+                      </div>
+                       <button className="btn" onClick={context.setAlbumListIndex}>
+                          Load More 
+                          <span 
+                            style={{
+                              display: 'inline-block',
+                              marginLeft: '5px'
+                            }}
+                          >
+                            {context.currentIndex}/{this.state.data.length}
+                          </span>
+                        </button>
+                    </>
                 }
-                
-
-                <button className="btn" onClick={context.setAlbumListIndex}>
-                	Load More
-                </button>
               </>
             );
           }}
