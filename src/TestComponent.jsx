@@ -6,6 +6,7 @@ import GlobalState from "./Context";
 import LoadingAlbum from "./Loading";
 import AlbumProvider from "./Provider/AlbumProvider";
 import ErrorAlbum from "./Errors Capture/ErrorAlbum";
+import Loader from "./Loaders/Loader";
 
 //HOC
 import AlbumHoc from "./Hocs/AlbumHoc";
@@ -23,12 +24,25 @@ export default class TestComponent extends React.Component {
   state = {
     albumCount: 0,
     scrollYPage: 0,
+    data : [],
+    error : "",
+    isLoading : true,
   };
 
+  api_url = "https://jsonplaceholder.typicode.com/photos";
   reference = React.createRef(null);
 
   componentDidMount(){
     window.addEventListener("scroll", this.onScroll);
+    fetch(this.api_url)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          data,
+          isLoading : false,
+        })
+      })
+      .catch(error => this.setState({error}))
   }
 
   componentWillUnmount(){
@@ -36,7 +50,6 @@ export default class TestComponent extends React.Component {
   }
 
   onScroll = () => {
-    console.log(window.scrollY)
     this.setState({
         scrollYPage: window.scrollY
     });
@@ -56,10 +69,9 @@ export default class TestComponent extends React.Component {
     }
 
     return (
-      <AlbumProvider>
+      <AlbumProvider data={this.state.data}>
         <GlobalState.Consumer>
           {(context) => {
-            console.log(context);
             return (
               <>
                 <b>{this.state.albumCount}</b>
@@ -90,7 +102,10 @@ export default class TestComponent extends React.Component {
                   Albums:
                 </strong>
 
-                <div className="test-component" onClick={this.onClickAlbum}>
+                {
+                  this.state.isLoading ?
+                    <Loader /> :
+                    <div className="test-component" onClick={this.onClickAlbum}>
                   {context.albums.map(({ title, id }) => (
                     <Suspense fallback={<LoadingAlbum />} key={id}>
                       {/*este compnente solo se renderiza una vez en toda la app*/}
@@ -105,6 +120,8 @@ export default class TestComponent extends React.Component {
                     </Suspense>
                   ))}
                 </div>
+                }
+                
 
                 <button className="btn" onClick={context.setAlbumListIndex}>
                 	Load More
