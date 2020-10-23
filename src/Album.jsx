@@ -21,6 +21,7 @@ export default memo(function Album({
     LazLoadImages(ref.current);
   }, [ref]);
 
+
   const showError = () => {
     setError(true);
   };

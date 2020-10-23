@@ -13,6 +13,8 @@ class App extends React.Component {
   render() {
     return (
       <ErrorBoundary componentName="TestComponent">
+        <div id="modals" />
+        
         <div className="App">{this.AppLazy}</div>
       </ErrorBoundary>
     );

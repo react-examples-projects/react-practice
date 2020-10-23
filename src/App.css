@@ -85,6 +85,36 @@
   color: #fff;
 }
 
+
+.modal{
+  position: fixed;
+  background: #eee;
+  padding: 1.5rem 2rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 900;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all .2s;
+}
+
+
+.modal .modal-body{
+  margin-top: 1rem;
+}
+
+.modal .btn{
+  background: linear-gradient(20deg, #150485, #590995);
+  color: #fff;
+  padding: .6rem 2rem;
+  margin-top: 2rem;
+  transition: all .1s ease-in;
+}
+
+.modal .btn:active{
+  transform: translateY(5px);
+}
+
 .sk-fading-circle {
   margin: 50px 0;
   width: 40px;
