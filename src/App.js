@@ -13,7 +13,7 @@ export default function () {
     </Suspense>
   );
   return ( 
-    <ErrorBoundary componentName="TestComponent">
+    <ErrorBoundary componentName="App.js">
       <div id="modals" />
 
       <div className="App">{AppLazy}</div>

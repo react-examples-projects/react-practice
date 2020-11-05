@@ -77,7 +77,6 @@ export default function ({
                     <div className="test-component" onClick={onClickAlbum}>
                       {context.items.map(({ title, id }) => (
                         <Suspense fallback={<LoadingPost />} key={id}>
-                          {/*este compnente solo se renderiza una vez en toda la app*/}
                           <ErrorPost>
                             <PostWrapped
                               title={title}
