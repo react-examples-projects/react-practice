@@ -1,8 +1,7 @@
 import React, { useState, memo, useEffect } from "react";
+import Post from "./PostComponent";
+import LazLoadImages from "../../Helpers/LazyLoadImages.js";
 
-import LazLoadImages from "./Helpers/LazyLoadImages.js";
-
-// impresionante memo memoriza el componente con las mismas props
 export default memo(function Album({
   title,
   thumbnailUrl,
@@ -21,7 +20,6 @@ export default memo(function Album({
     LazLoadImages(ref.current);
   }, [ref]);
 
-
   const showError = () => {
     setError(true);
   };
@@ -30,18 +28,5 @@ export default memo(function Album({
     throw new Error("Album error");
   }
 
-  return (
-    <article className="album" onClick={showError}>
-      <figure className="thumbail">
-        <img
-          src={thumbailUrlLazy}
-          alt="Album coverpage"
-          ref={ref}
-          data-loaded={thumbnailUrl}
-        />
-      </figure>
-      <p>{title}</p>
-    </article>
-  );
+  return <Post {...{ thumbailUrlLazy, thumbnailUrl, title, showError, ref }} />;
 });
-

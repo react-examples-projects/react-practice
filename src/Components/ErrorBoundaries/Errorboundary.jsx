@@ -28,7 +28,7 @@ export default class extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     console.log(errorInfo)
-    this.setState((state) => ({
+    this.setState(() => ({
       error: true,
       errorInfo,
     }));

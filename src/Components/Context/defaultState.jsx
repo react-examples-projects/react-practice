@@ -1,4 +1,4 @@
-import albums from "../db/data";
+import albums from "../../db/data";
 
 const defaultState = {
   albums,

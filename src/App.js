@@ -1,24 +1,20 @@
 import React, { lazy, Suspense } from "react";
 import "./App.css";
-import ErrorBoundary from "./Errors Capture/Errorboundary";
+import ErrorBoundary from "./Components/ErrorBoundaries/Errorboundary";
 
-const TestComponentLazy = lazy(() => import("./TestComponent"));
+const HomeLazy = lazy(() => import("./Components/Pages/Home"));
 
-class App extends React.Component {
-  AppLazy = (
+export default function () {
+  const AppLazy = (
     <Suspense fallback={<span>Cargando...</span>}>
-      <TestComponentLazy />
+      <HomeLazy />
     </Suspense>
   );
-  render() {
-    return (
-      <ErrorBoundary componentName="TestComponent">
-        <div id="modals" />
-        
-        <div className="App">{this.AppLazy}</div>
-      </ErrorBoundary>
-    );
-  }
-}
+  return (
+    <ErrorBoundary componentName="TestComponent">
+      <div id="modals" />
 
-export default App;
+      <div className="App">{AppLazy}</div>
+    </ErrorBoundary>
+  );
+}

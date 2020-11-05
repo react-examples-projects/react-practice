@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import GlobalState from "../Context";
-
+import GlobalState from "../Context/context";
 
 export default function (props) {
-   // # La cantidad de nuevos items que se mostraran por cada click al boton
+  // # La cantidad de nuevos items que se mostraran por cada click al boton
   let ITEMS_PER_CLICK = 12;
-
- 
 
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -30,19 +27,18 @@ export default function (props) {
       availableItems -= ITEMS_PER_CLICK;
       setCurrentIndex(currentIndex + ITEMS_PER_CLICK);
     }
-  }
+  };
 
   useEffect(() => {
-   // # si el indice cambia, añadimos mas items a la lista
-    setAlbums(previusAlbums => {
-       return props.data.slice(0, currentIndex);
+    // # si el indice cambia, añadimos mas items a la lista
+    setAlbums((previusAlbums) => {
+      return props.data.slice(0, currentIndex);
     });
+  }, [props.data, currentIndex]);
 
-  }, [props.data, currentIndex])
- 
   useEffect(() => {
     setAlbums(props.data.slice(0, ITEMS_PER_CLICK));
-  }, [props.data, ITEMS_PER_CLICK])
+  }, [props.data, ITEMS_PER_CLICK]);
 
   return (
     <GlobalState.Provider
