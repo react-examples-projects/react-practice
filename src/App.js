@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from "react";
-import "./App.css";
 import ErrorBoundary from "./Components/ErrorBoundaries/Errorboundary";
+
+import "./Styles/App.css";
+import "./Styles/LazyLoad.css";
 
 const HomeLazy = lazy(() => import("./Components/Pages/Home"));
 
