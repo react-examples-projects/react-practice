@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const AlbumHoc = (WrappedComponent, fn) => {
+export default (WrappedComponent, fn) => {
   return class extends Component {
     componentDidMount() {
       // console.log(
@@ -23,5 +23,3 @@ const AlbumHoc = (WrappedComponent, fn) => {
     }
   };
 };
-
-export default AlbumHoc;

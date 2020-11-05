@@ -12,7 +12,7 @@ export default function () {
       <HomeLazy />
     </Suspense>
   );
-  return (
+  return ( 
     <ErrorBoundary componentName="TestComponent">
       <div id="modals" />
 

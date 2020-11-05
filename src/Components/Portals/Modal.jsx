@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-function Modal(props) {
+function Portal(props) {
   const { title, description, onToggle, ...propsModal } = props;
 
   return (
@@ -18,16 +18,16 @@ function Modal(props) {
   );
 }
 
-function AlbumPortal(props) {
+function Modal(props) {
   const { title, description, ...propsModal } = props;
-  const modal = <Modal {...{ title, description }} {...propsModal} />;
+  const modal = <Portal {...{ title, description }} {...propsModal} />;
 
   return ReactDOM.createPortal(modal, document.getElementById("modals"));
 }
 
-AlbumPortal.propTypes = {
+Modal.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
-export default AlbumPortal;
+export default Modal;

@@ -2,16 +2,16 @@ import React, { lazy, Suspense } from "react";
 
 // components
 import context from "../Context/context";
-import LoadingAlbum from "../Loaders/Loading";
-import AlbumProvider from "../Provider/AlbumProvider";
-import ErrorAlbum from "../ErrorBoundaries/ErrorAlbum";
+import LoadingPost from "../Loaders/Loading";
+import ShowMoreProvider from "../Provider/ShowMoreProvider";
+import ErrorPost from "../ErrorBoundaries/ErrorPost";
 import Loader from "../Loaders/Loader";
-import AlbumPortal from "../Portals/AlbumPortal";
-import AlbumHoc from "../Hocs/AlbumHoc";
+import Modal from "../Portals/Modal";
+import PostHOC from "../Hocs/PostHOC";
 
 const PostLazy = lazy(() => import("../Post/PostContainer"));
 
-const PostWrapped = AlbumHoc(PostLazy, (_this) => {
+const PostWrapped = PostHOC(PostLazy, (_this) => {
   console.log(
     "%c\n⏩ Se activo el hoc en album: " + _this.props.id + "\n",
     "color: #14274e; font-weight: lighter; font-family: Courier New; font-size: 14px;"
@@ -22,8 +22,8 @@ export default function ({
   isOpenModal,
   onToggleModal,
   data,
-  albumCount,
-  onClickAlbumCount,
+  postsCount,
+  onClickPostCount,
   onClickAlbum,
   reference,
   onChangeUser,
@@ -32,7 +32,7 @@ export default function ({
   return (
     <>
       {isOpenModal && (
-        <AlbumPortal
+        <Modal
           title="Probando modal"
           description="Una descripcion muy pero muy corta..."
           onToggle={onToggleModal}
@@ -44,20 +44,20 @@ export default function ({
       </button>
       <br />
 
-      <AlbumProvider data={data}>
+      <ShowMoreProvider data={data}>
         <context.Consumer>
           {(context) => {
             return (
               <>
-                <b>{albumCount}</b>
+                <b>{postsCount}</b>
                 <br />
                 <br />
                 <button
-                  onClick={onClickAlbumCount}
+                  onClick={onClickPostCount}
                   ref={reference}
                   className="btn"
                 >
-                  Increment albums count
+                  Increment items count
                 </button>
                 <button onClick={() => onChangeUser(context)} className="btn">
                   Change user
@@ -67,7 +67,7 @@ export default function ({
                 <br />
 
                 <strong style={{ marginBottom: "2rem", display: "block" }}>
-                  Albums:
+                  Items:
                 </strong>
 
                 {isLoading ? (
@@ -75,21 +75,21 @@ export default function ({
                 ) : (
                   <>
                     <div className="test-component" onClick={onClickAlbum}>
-                      {context.albums.map(({ title, id }) => (
-                        <Suspense fallback={<LoadingAlbum />} key={id}>
+                      {context.items.map(({ title, id }) => (
+                        <Suspense fallback={<LoadingPost />} key={id}>
                           {/*este compnente solo se renderiza una vez en toda la app*/}
-                          <ErrorAlbum>
+                          <ErrorPost>
                             <PostWrapped
                               title={title}
                               thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
                               thumbailUrlLazy={`https://picsum.photos/id/${id}/5/5`}
                               id={id}
                             />
-                          </ErrorAlbum>
+                          </ErrorPost>
                         </Suspense>
                       ))}
                     </div>
-                    <button className="btn" onClick={context.setAlbumListIndex}>
+                    <button className="btn" onClick={context.setItemsListIndex}>
                       Load More
                       <span
                         style={{
@@ -106,7 +106,7 @@ export default function ({
             );
           }}
         </context.Consumer>
-      </AlbumProvider>
+      </ShowMoreProvider>
     </>
   );
 }

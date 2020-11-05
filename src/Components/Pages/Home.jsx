@@ -3,7 +3,7 @@ import Home from "./HomeComponent";
 
 export default class extends React.Component {
   state = {
-    albumCount: 0,
+    postsCount: 0,
     data: [],
     error: "",
     isLoading: true,
@@ -27,9 +27,9 @@ export default class extends React.Component {
 
   componentWillUnmount() {}
 
-  onClickAlbumCount = () => {
+  onClickPostCount = () => {
     this.setState({
-      albumCount: this.state.albumCount + 1,
+      postsCount: this.state.postsCount + 1,
     });
   };
 
@@ -49,16 +49,16 @@ export default class extends React.Component {
   onRender = () => {};
 
   render() {
-    console.log("Test Component render");
-    if (this.state.albumCount === 5) {
+    if (this.state.postsCount === 5) {
       throw new Error("Corrompido xddd");
     }
+    
     const {
       state,
       reference,
       onToggleModal,
       onChangeUser,
-      onClickAlbumCount,
+      onClickPostCount,
     } = this;
 
     return (
@@ -68,7 +68,7 @@ export default class extends React.Component {
           reference,
           onToggleModal,
           onChangeUser,
-          onClickAlbumCount,
+          onClickPostCount,
         }}
       />
     );
