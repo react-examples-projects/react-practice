@@ -1,24 +1,13 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 
 // components
 import context from "../Context/context";
-import LoadingPost from "../Loaders/Loading";
 import ShowMoreProvider from "../Provider/ShowMoreProvider";
-import ErrorPost from "../ErrorBoundaries/ErrorPost";
 import Loader from "../Loaders/Loader";
-import PostHOC from "../Hocs/PostHOC";
 import HomeButtons from "./Components/HomeButtons";
 import BtnLoadMore from "./Components/ButtonLoadMore";
 import HomeModal from "./Components/HomeModal";
-
-const PostLazy = lazy(() => import("../Post/PostContainer"));
-
-const PostWrapped = PostHOC(PostLazy, (_this) => {
-  console.log(
-    "%c\n⏩ Se activo el hoc en album: " + _this.props.id + "\n",
-    "color: #14274e; font-weight: lighter; font-family: Courier New; font-size: 14px;"
-  );
-});
+import LazyPost from "./Components/HomeLazyPost";
 
 export default function ({
   isOpenModal,
@@ -56,16 +45,13 @@ export default function ({
                   <>
                     <div className="test-component" onClick={onClickAlbum}>
                       {context.items.map(({ title, id }) => (
-                        <Suspense fallback={<LoadingPost />} key={id}>
-                          <ErrorPost>
-                            <PostWrapped
-                              title={title}
-                              thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
-                              thumbailUrlLazy={`https://picsum.photos/id/${id}/5/5`}
-                              id={id}
-                            />
-                          </ErrorPost>
-                        </Suspense>
+                        <LazyPost
+                          title={title}
+                          thumbnailUrl={`https://picsum.photos/id/${id}/160/160`}
+                          thumbailUrlLazy={`https://picsum.photos/id/${id}/5/5`}
+                          id={id}
+                          key={id}
+                        />
                       ))}
                     </div>
                     <BtnLoadMore
