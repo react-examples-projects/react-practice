@@ -1,0 +1,19 @@
+.thumbail {
+  display: flex;
+  flex-basis: 110px;
+  overflow: hidden;
+
+  > img {
+    width: 100%;
+    -webkit-filter: blur(1px) grayscale(1);
+    filter: blur(1px) grayscale(1);
+    transition: all 0.3s ease, transform 1s ease;
+    transform: scale(1.06);
+    object-fit: cover;
+
+    &.loaded {
+      filter: blur(0) grayscale(1);
+      transform: scale(1);
+    }
+  }
+}

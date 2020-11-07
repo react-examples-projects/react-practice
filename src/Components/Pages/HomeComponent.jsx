@@ -6,8 +6,10 @@ import LoadingPost from "../Loaders/Loading";
 import ShowMoreProvider from "../Provider/ShowMoreProvider";
 import ErrorPost from "../ErrorBoundaries/ErrorPost";
 import Loader from "../Loaders/Loader";
-import Modal from "../Portals/Modal";
 import PostHOC from "../Hocs/PostHOC";
+import HomeButtons from "./Components/HomeButtons";
+import BtnLoadMore from "./Components/ButtonLoadMore";
+import HomeModal from "./Components/HomeModal";
 
 const PostLazy = lazy(() => import("../Post/PostContainer"));
 
@@ -25,20 +27,12 @@ export default function ({
   postsCount,
   onClickPostCount,
   onClickAlbum,
-  reference,
   onChangeUser,
   isLoading,
 }) {
   return (
     <>
-      {isOpenModal && (
-        <Modal
-          title="Probando modal"
-          description="Una descripcion muy pero muy corta..."
-          onToggle={onToggleModal}
-        />
-      )}
-
+      <HomeModal {...{ isOpenModal, onToggleModal }} />
       <button className="btn" onClick={onToggleModal}>
         Toggle Modal
       </button>
@@ -49,23 +43,9 @@ export default function ({
           {(context) => {
             return (
               <>
-                <b>{postsCount}</b>
-                <br />
-                <br />
-                <button
-                  onClick={onClickPostCount}
-                  ref={reference}
-                  className="btn"
-                >
-                  Increment items count
-                </button>
-                <button onClick={() => onChangeUser(context)} className="btn">
-                  Change user
-                </button>
-
-                <br />
-                <br />
-
+                <HomeButtons
+                  {...{ postsCount, onClickPostCount, onChangeUser, context }}
+                />
                 <strong style={{ marginBottom: "2rem", display: "block" }}>
                   Items:
                 </strong>
@@ -88,17 +68,11 @@ export default function ({
                         </Suspense>
                       ))}
                     </div>
-                    <button className="btn" onClick={context.setItemsListIndex}>
-                      Load More
-                      <span
-                        style={{
-                          display: "inline-block",
-                          marginLeft: "5px",
-                        }}
-                      >
-                        {context.currentIndex}/{data.length}
-                      </span>
-                    </button>
+                    <BtnLoadMore
+                      data={data}
+                      onclickButton={context.setItemsListIndex}
+                      currentIndex={context.currentIndex}
+                    />
                   </>
                 )}
               </>

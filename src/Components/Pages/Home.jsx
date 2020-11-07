@@ -11,8 +11,7 @@ export default class extends React.Component {
   };
 
   api_url = "https://jsonplaceholder.typicode.com/photos";
-  reference = React.createRef(null);
- 
+
   componentDidMount() {
     fetch(this.api_url)
       .then((res) => res.json())
@@ -52,20 +51,13 @@ export default class extends React.Component {
     if (this.state.postsCount === 5) {
       throw new Error("Corrompido xddd");
     }
-    
-    const {
-      state,
-      reference,
-      onToggleModal,
-      onChangeUser,
-      onClickPostCount,
-    } = this;
+
+    const { state, onToggleModal, onChangeUser, onClickPostCount } = this;
 
     return (
       <Home
         {...{
           ...state,
-          reference,
           onToggleModal,
           onChangeUser,
           onClickPostCount,
