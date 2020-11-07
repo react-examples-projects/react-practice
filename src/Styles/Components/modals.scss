@@ -1,0 +1,27 @@
+.modal {
+  position: fixed;
+  background: #eee;
+  padding: 1.5rem 2rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 900;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+
+  .modal-body {
+    margin-top: 1rem;
+  }
+
+  .btn {
+    background: linear-gradient(20deg, #150485, #590995);
+    color: #fff;
+    padding: 0.6rem 2rem;
+    margin-top: 2rem;
+    transition: all 0.1s ease-in;
+
+    &:active {
+      transform: translateY(5px);
+    }
+  }
+}

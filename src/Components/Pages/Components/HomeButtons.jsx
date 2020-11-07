@@ -1,11 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-export default function ({
-  postsCount,
-  onClickPostCount,
-  onChangeUser,
-  context,
-}) {
+function HomeButtons({ postsCount, onClickPostCount, onChangeUser, context }) {
   return (
     <>
       <b>{postsCount}</b>
@@ -18,3 +13,5 @@ export default function ({
     </>
   );
 }
+
+export default memo(HomeButtons);

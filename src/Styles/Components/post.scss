@@ -1,0 +1,24 @@
+.post {
+  flex: 0 1 calc(54% - 2.8rem);
+  box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.226);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  overflow: hidden;
+
+  p {
+    flex-basis: 80%;
+    padding: 1rem;
+    font-size: 14px;
+  }
+
+  &:hover {
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.164);
+
+    .thumbail > img.loaded {
+      filter: blur(0) grayscale(0);
+    }
+  }
+}

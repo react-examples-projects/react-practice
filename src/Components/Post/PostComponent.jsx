@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 export default forwardRef(
   ({ thumbnailUrl, thumbailUrlLazy, title, showError }, ref) => {
     return (
-      <article className="album" onClick={showError}>
+      <article className="post" onClick={showError}>
         <figure className="thumbail">
           <img
             src={thumbailUrlLazy}

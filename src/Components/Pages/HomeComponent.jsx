@@ -6,6 +6,7 @@ import ShowMoreProvider from "../Provider/ShowMoreProvider";
 import Loader from "../Loaders/Loader";
 import HomeButtons from "./Components/HomeButtons";
 import BtnLoadMore from "./Components/ButtonLoadMore";
+import Header from "../Layout/Header/Header";
 import HomeModal from "./Components/HomeModal";
 import LazyPost from "./Components/HomeLazyPost";
 
@@ -43,7 +44,8 @@ export default function ({
                   <Loader />
                 ) : (
                   <>
-                    <div className="test-component" onClick={onClickAlbum}>
+                    <Header />
+                    <div className="main" onClick={onClickAlbum}>
                       {context.items.map(({ title, id }) => (
                         <LazyPost
                           title={title}

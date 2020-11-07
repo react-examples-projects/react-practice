@@ -1,0 +1,14 @@
+.header {
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+  background: #000046;
+  background: -webkit-linear-gradient(to right, #1cb5e0da, #00004671),
+    url("../../Img/header.png");
+  background: linear-gradient(to right, #1cb5e0da, #00004671),
+    url("../../Img/header.png");
+  border-radius: 5px;
+  h1 {
+    color: #fff;
+    font-family: "Archivo Black", sans-serif;
+  }
+}
