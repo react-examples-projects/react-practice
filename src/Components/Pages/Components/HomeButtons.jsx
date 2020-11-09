@@ -1,16 +1,15 @@
 import React, { memo } from "react";
 
-function HomeButtons({ postsCount, onClickPostCount, onChangeUser, context }) {
+function HomeButtons({ onToggleModal, onChangeUser, context }) {
   return (
-    <>
-      <b>{postsCount}</b>
-      <button onClick={onClickPostCount} className="btn">
-        Increment items count
-      </button>
-      <button onClick={() => onChangeUser(context)} className="btn">
+    <div className="btn-group">
+      <button onClick={() => onChangeUser(context)} className="btn btn-grad">
         Change user
       </button>
-    </>
+      <button className="btn" onClick={onToggleModal}>
+        Toggle Modal
+      </button>
+    </div>
   );
 }
 

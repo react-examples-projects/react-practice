@@ -63,7 +63,7 @@
   $deg: 30deg;
   $seconds: -1.1s;
 
-  @for $i from 2 to 12 {
+  @for $i from 2 through  12 {
     .sk-circle#{$i} {
       transform: rotate($deg);
 

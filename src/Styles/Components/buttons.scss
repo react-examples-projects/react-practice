@@ -1,17 +1,44 @@
 .btn {
-  display: inline-block;
-  border: 0;
-  padding: 0.5rem 0.7rem;
+  padding: 15px 45px;
   text-align: center;
-  margin: 0.4rem;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.322);
   font-weight: bold;
   cursor: pointer;
-  outline: none;
-  transition: all 0.3s ease;
-  display: block;
-
+  background-image: linear-gradient(
+    to right,
+    rgb(12, 235, 235) 0%,
+    rgb(32, 227, 178) 51%,
+    rgb(12, 235, 235) 100%
+  );
   &:hover {
-    background: rgba(128, 128, 128, 0.65);
+    background-position: 100%;
     color: #fff;
+    text-decoration: none;
+  }
+
+  &.btn-grad {
+    background-image: linear-gradient(
+      to right,
+      #36d1dc 0%,
+      #5b86e5 51%,
+      #36d1dc 100%
+    );
+  }
+}
+
+.btn-group {
+  display: flex;
+  flex: 0 1 auto;
+
+  .btn:not(:last-child) {
+    margin-right: 5px;
   }
 }

@@ -14,8 +14,6 @@ export default function ({
   isOpenModal,
   onToggleModal,
   data,
-  postsCount,
-  onClickPostCount,
   onClickAlbum,
   onChangeUser,
   isLoading,
@@ -23,28 +21,20 @@ export default function ({
   return (
     <>
       <HomeModal {...{ isOpenModal, onToggleModal }} />
-      <button className="btn" onClick={onToggleModal}>
-        Toggle Modal
-      </button>
-      <br />
 
       <ShowMoreProvider data={data}>
         <context.Consumer>
           {(context) => {
             return (
               <>
-                <HomeButtons
-                  {...{ postsCount, onClickPostCount, onChangeUser, context }}
-                />
-                <strong style={{ marginBottom: "2rem", display: "block" }}>
-                  Items:
-                </strong>
-
                 {isLoading ? (
                   <Loader />
                 ) : (
                   <>
                     <Header />
+                    <HomeButtons
+                      {...{ onToggleModal, onChangeUser, context }}
+                    />
                     <div className="main" onClick={onClickAlbum}>
                       {context.items.map(({ title, id }) => (
                         <LazyPost

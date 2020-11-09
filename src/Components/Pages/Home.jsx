@@ -1,19 +1,16 @@
 import React from "react";
 import Home from "./HomeComponent";
-
+import api_url from "../../Helpers/api";
 export default class extends React.Component {
   state = {
-    postsCount: 0,
     data: [],
     error: "",
     isLoading: true,
     isOpenModal: false,
   };
 
-  api_url = "https://jsonplaceholder.typicode.com/photos";
-
   componentDidMount() {
-    fetch(this.api_url)
+    fetch(api_url)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -25,12 +22,6 @@ export default class extends React.Component {
   }
 
   componentWillUnmount() {}
-
-  onClickPostCount = () => {
-    this.setState({
-      postsCount: this.state.postsCount + 1,
-    });
-  };
 
   onChangeUser = (context) => {
     context.setCurrentUser({
@@ -48,11 +39,7 @@ export default class extends React.Component {
   onRender = () => {};
 
   render() {
-    if (this.state.postsCount === 5) {
-      throw new Error("Corrompido xddd");
-    }
-
-    const { state, onToggleModal, onChangeUser, onClickPostCount } = this;
+    const { state, onToggleModal, onChangeUser } = this;
 
     return (
       <Home
@@ -60,7 +47,6 @@ export default class extends React.Component {
           ...state,
           onToggleModal,
           onChangeUser,
-          onClickPostCount,
         }}
       />
     );

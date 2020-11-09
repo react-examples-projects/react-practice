@@ -8,6 +8,7 @@ export default function ({ onclickButton, currentIndex, data }) {
         style={{
           display: "inline-block",
           marginLeft: "5px",
+          color: "#fff",
         }}
       >
         {currentIndex}/{data.length}
