@@ -1,14 +1,15 @@
 import React, { memo } from "react";
+import Btn from "../../Buttons/Btn";
 
 function HomeButtons({ onToggleModal, onChangeUser, context }) {
   return (
     <div className="btn-group">
-      <button onClick={() => onChangeUser(context)} className="btn btn-grad">
-        Change user
-      </button>
-      <button className="btn" onClick={onToggleModal}>
-        Toggle Modal
-      </button>
+      <Btn
+        text="Change user"
+        onClick={() => onChangeUser(context)}
+        className="btn-grad"
+      />
+      <Btn text="Toggle Modal" onClick={onToggleModal} />
     </div>
   );
 }

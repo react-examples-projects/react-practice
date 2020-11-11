@@ -1,18 +1,11 @@
 import React from "react";
+import Btn from "../../Buttons/Btn";
 
 export default function ({ onclickButton, currentIndex, data }) {
   return (
-    <button className="btn" onClick={onclickButton}>
-      Load More
-      <span
-        style={{
-          display: "inline-block",
-          marginLeft: "5px",
-          color: "#fff",
-        }}
-      >
-        {currentIndex}/{data.length}
-      </span>
-    </button>
+    <Btn
+      text={`Load more ${currentIndex + "/" + data.length}`}
+      onClick={onclickButton}
+    />
   );
 }

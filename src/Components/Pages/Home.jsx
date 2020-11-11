@@ -1,54 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Home from "./HomeComponent";
-import api_url from "../../Helpers/api";
-export default class extends React.Component {
-  state = {
-    data: [],
-    error: "",
-    isLoading: true,
-    isOpenModal: false,
-  };
+import ShowMoreProvider from "../Provider/ShowMoreProvider";
+import fetchPosts from "../../Helpers/api";
+import { useQuery } from "react-query";
 
-  componentDidMount() {
-    fetch(api_url)
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({
-          data,
-          isLoading: false,
-        });
-      })
-      .catch((error) => this.setState({ error }));
-  }
+export default function () {
+  console.log("HomeContianer.jsx");
+  const [isOpenModal, setOpenModal] = useState(false);
 
-  componentWillUnmount() {}
+  const { data = [], isLoading, isError: error } = useQuery(
+    "posts",
+    fetchPosts,
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
-  onChangeUser = (context) => {
+  const onChangeUser = (context) => {
     context.setCurrentUser({
       name: "libardo",
       role: "administrator",
     });
   };
 
-  onToggleModal = () => {
-    this.setState({
-      isOpenModal: !this.state.isOpenModal,
-    });
+  const onToggleModal = () => {
+    setOpenModal((isOpen) => !isOpen);
   };
 
-  onRender = () => {};
-
-  render() {
-    const { state, onToggleModal, onChangeUser } = this;
-
-    return (
+  return (
+    <ShowMoreProvider data={data}>
       <Home
         {...{
-          ...state,
+          data,
+          error,
+          isLoading,
           onToggleModal,
           onChangeUser,
+          isOpenModal,
         }}
       />
-    );
-  }
+    </ShowMoreProvider>
+  );
 }

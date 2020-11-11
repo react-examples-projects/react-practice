@@ -11,8 +11,8 @@ export default function () {
     <Suspense fallback={<span>Cargando...</span>}>
       <HomeLazy />
     </Suspense>
-  );   
-  return ( 
+  );
+  return (
     <ErrorBoundary componentName="App.js">
       <div id="modals" />
 
