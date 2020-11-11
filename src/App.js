@@ -1,10 +1,12 @@
 import React, { lazy, Suspense } from "react";
 import ErrorBoundary from "./Components/ErrorBoundaries/Errorboundary";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PostContainer from "./Components/Pages/Post/PostContainer";
+
 import "./Styles/styles.scss";
 import "./Styles/LazyLoad.scss";
 
-const HomeLazy = lazy(() => import("./Components/Pages/Home"));
+const HomeLazy = lazy(() => import("./Components/Pages/Home/Home"));
 
 export default function () {
   return (
@@ -12,6 +14,9 @@ export default function () {
       <Switch>
         <Route exact path="/">
           <App />
+        </Route>
+        <Route exact path="/post/:id">
+          <PostContainer />
         </Route>
       </Switch>
     </Router>

@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from "react";
-import LoadingPost from "../../Loaders/Loading";
-import ErrorPost from "../../ErrorBoundaries/ErrorPost";
-import PostHOC from "../../Hocs/PostHOC";
+import LoadingPost from "../../../Loaders/Loading";
+import ErrorPost from "../../../ErrorBoundaries/ErrorPost";
+import PostHOC from "../../../Hocs/PostHOC";
 
-const PostLazy = lazy(() => import("../../Post/PostContainer"));
+const PostLazy = lazy(() => import("../../../Post/PostContainer"));
 const PostWrapped = PostHOC(PostLazy, (_this) => {
   console.log(
     "%c\n⏩ Se activo el hoc en album: " + _this.props.id + "\n",

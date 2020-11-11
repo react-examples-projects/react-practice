@@ -1,0 +1,39 @@
+.postTitle {
+  font-size: 20px;
+}
+
+.postFigure {
+  position: relative;
+  height: 300px;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.postFigure > img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.postFigure::before {
+  border-radius: 5px;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: linear-gradient(
+    358deg,
+    rgba(0, 0, 0, 0.089),
+    rgba(0, 0, 0, 0.418)
+  );
+}
+
+.ph {
+  margin-bottom: 1rem;
+  text-align: justify;
+}

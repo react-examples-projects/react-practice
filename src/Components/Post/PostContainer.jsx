@@ -1,14 +1,14 @@
-import React, { useState, memo, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import Post from "./PostComponent";
 import LazLoadImages from "../../Helpers/LazyLoadImages.js";
 
-export default memo(function Album({
+export default memo(function ({
+  id,
   title,
   thumbnailUrl,
   thumbailUrlLazy,
   hocdata = "undefined ", // esto puede causar un error si no hay props
 }) {
-  const [error, setError] = useState(false);
   const ref = React.createRef(null);
 
   useEffect(() => {
@@ -20,13 +20,5 @@ export default memo(function Album({
     LazLoadImages(ref.current);
   }, [ref]);
 
-  const showError = () => {
-    setError(true);
-  };
-
-  if (error) {
-    throw new Error("Album error");
-  }
-
-  return <Post {...{ thumbailUrlLazy, thumbnailUrl, title, showError, ref }} />;
+  return <Post {...{ id, thumbailUrlLazy, thumbnailUrl, title, ref }} />;
 });

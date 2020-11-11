@@ -1,5 +1,5 @@
 import React from "react";
-import Btn from "../../Buttons/Btn";
+import Btn from "../../../Buttons/Btn";
 
 export default function ({ onclickButton, currentIndex, data }) {
   return (

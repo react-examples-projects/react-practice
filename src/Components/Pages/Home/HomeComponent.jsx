@@ -1,13 +1,13 @@
 import React, { useContext, memo } from "react";
 import { Link } from "react-router-dom";
 // components
-import Loader from "../Loaders/Loader";
+import Loader from "../../Loaders/Loader";
 import HomeButtons from "./Components/HomeButtons";
 import BtnLoadMore from "./Components/ButtonLoadMore";
-import Header from "../Layout/Header/Header";
+import Header from "../../Layout/Header/Header";
 import HomeModal from "./Components/HomeModal";
 import LazyPost from "./Components/HomeLazyPost";
-import homeContext from "../Context/context";
+import homeContext from "../../Context/context";
 
 function Hc({ isOpenModal, onToggleModal, onChangeUser, isLoading, data }) {
   const context = useContext(homeContext);

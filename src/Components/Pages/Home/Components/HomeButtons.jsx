@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import Btn from "../../Buttons/Btn";
+import Btn from "../../../Buttons/Btn";
 
 function HomeButtons({ onToggleModal, onChangeUser, context }) {
   return (

@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
-
+import { Link } from "react-router-dom";
 export default forwardRef(
-  ({ thumbnailUrl, thumbailUrlLazy, title, showError }, ref) => {
+  ({ id, thumbnailUrl, thumbailUrlLazy, title }, ref) => {
     return (
-      <article className="post" onClick={showError}>
+      <Link to={`post/${id}`} className="post">
         <figure className="thumbail">
           <img
             src={thumbailUrlLazy}
@@ -13,7 +13,7 @@ export default forwardRef(
           />
         </figure>
         <p>{title}</p>
-      </article>
+      </Link>
     );
   }
 );

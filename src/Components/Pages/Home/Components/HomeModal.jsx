@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../../Portals/Modal";
+import Modal from "../../../Portals/Modal";
 import { _form, _input } from "./Styles/homeModalForm.module.scss";
 
 export default function ({ isOpenModal, onToggleModal }) {
