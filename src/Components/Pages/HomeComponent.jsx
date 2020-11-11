@@ -1,5 +1,5 @@
 import React, { useContext, memo } from "react";
-
+import { Link } from "react-router-dom";
 // components
 import Loader from "../Loaders/Loader";
 import HomeButtons from "./Components/HomeButtons";
@@ -14,13 +14,14 @@ function Hc({ isOpenModal, onToggleModal, onChangeUser, isLoading, data }) {
   return (
     <>
       <HomeModal {...{ isOpenModal, onToggleModal }} />
-
+      <Link to="/posts">Ir a los posts mas locos</Link>
       {isLoading ? (
         <Loader />
-      ) : (
+      ) : (  
         <>
           <Header />
           <HomeButtons {...{ onToggleModal, onChangeUser, context }} />
+         
           <div className="main">
             {context.items.map(({ title, id }) => (
               <LazyPost
